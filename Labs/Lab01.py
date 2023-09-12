@@ -1,5 +1,5 @@
 # 1. Name:
-#      -your name-
+#      Arlo Jolley
 # 2. Assignment Name:
 #      Lab 01: Tic-Tac-Toe
 # 3. Assignment Description:
@@ -7,7 +7,7 @@
 # 4. What was the hardest part? Be as specific as possible.
 #      -a paragraph or two about how the assignment went for you-
 # 5. How long did it take for you to complete the assignment?
-#      -total time in hours including reading the assignment and submitting the program-
+#      Start time: 9/12/23 at 12pm // End time:
 
 import json
 
@@ -21,33 +21,94 @@ BLANK = ' '
 # it is only used to reset the board to blank. This should be the format
 # of the code in the JSON file.
 blank_board = {  
-            "board": [
+            "board0": [
                 BLANK, BLANK, BLANK,
                 BLANK, BLANK, BLANK,
                 BLANK, BLANK, BLANK ]
         }
 
+with open("data.json", "w") as json_file:
+    json.dump(blank_board, json_file)
+
 def read_board(filename):
     '''Read the previously existing board from the file if it exists.'''
     # Put file reading code here.
-    return blank_board['board']
+    with open(filename, "r") as game_file:
+        data_content = game_file.read()
+    game_board = json.loads(data_content)
+    return game_board['board0']
 
 def save_board(filename, board):
     '''Save the current game to a file.'''
     # Put file writing code here.
+    with open(filename, "r") as json_file:
+        existing_data = json.load(json_file)
+    
+    existing_data["board1"] = board
+
+    with open(filename, "w") as json_file:
+        json.dump(existing_data, json_file)
+
 
 def display_board(board):
     '''Display a Tic-Tac-Toe board on the screen in a user-friendly way.'''
-    # Put display code here.
+    # print(board)
+    print(f" {board[0]} | {board[1]} | {board[2]} ")
+    print("---+---+---")
+    print(f" {board[3]} | {board[4]} | {board[5]} ")
+    print("---+---+---")
+    print(f" {board[6]} | {board[7]} | {board[8]} ")
+    
 
-def is_x_turn(board):
+def is_x_turn(round, last_winner):
     '''Determine whose turn it is.'''
     # Put code here determining if it is X's turn.
-    return True
+    if last_winner == 0 or last_winner == 1:
+        if round % 2 == 0:
+            return False
+        else:
+            return True
+    else:
+        if round % 2 == 0:
+            return True
+        else:
+            return False
+
+def board_update(board, location, player):
+    '''Updates the list/distonary with the new location of X or O'''
+    location -= 1
+    board[location] = player
 
 def play_game(board):
     '''Play the game of Tic-Tac-Toe.'''
     # Put game play code here. Return False when the user has indicated they are done.
+    # Varables
+    game_run = True
+    round = 0
+    last_winner = 0
+    location = 0
+
+    # Game loop
+    while(game_run):
+        display_board(board)
+        round += 1
+        if is_x_turn(round, last_winner):
+            location = input("X> ")
+            player = X
+        else:
+            location = input("O> ")
+            player = O
+        
+        if location == "q":
+            break
+        else:
+            board_update(board, int(location), player)
+        # print(board)
+        if round >= 5:
+            game_run = not(game_done(board, True))
+
+    save_board("data.json", board)
+        
     return False
 
 def game_done(board, message=False):
@@ -102,3 +163,12 @@ print(" 7 | 8 | 9 \n")
 print("The current board is:")
 
 # The file read code, game loop code, and file close code goes here.
+game = read_board("data.json")
+
+play_game(game)
+print()
+again = int(input("would you like to play again? (0/1): "))
+if again == 1:
+    True
+else:
+    False
