@@ -1,0 +1,33 @@
+def month()
+	return month#
+def year()
+	return year#
+def is_leap_year(year#)
+	if leap_year
+		return True
+	else
+		return False
+def days_of_month(leap_year, month#) // can change the style of if statements when I come to it
+	return list_of_days
+def start_day_of_month(year#, month#)
+	return start_location // a number of 0 through 6 for the day of the week
+def display(start_location, list_of_days)
+	print(" Su  Mo  Tu  We  Th  Fr  Sa ")
+	count = 0
+	while count < start_location 
+		list_display += "  "
+	list_display += list_of_days
+	count += list_of_days.length()
+	while count < 42
+		list_display += "  "
+	print(f" {list_display[0]}  {list_display[1]}  {list_display[2]}  {list_display[3]}  {list_display[4]}  {list_display[5]}  {list_display[6]} \n
+			> {list_display[7]}  {list_display[8]}  {list_display[9]}  {list_display[10]}  {list_display[11]}  {list_display[12]}  {list_display[13]} \n
+			> {list_display[14]}  {list_display[15]}  {list_display[16]}  {list_display[17]}  {list_display[18]}  {list_display[19]}  {list_display[20]} \n
+			> {list_display[21]}  {list_display[22]}  {list_display[23]}  {list_display[24]}  {list_display[25]}  {list_display[26]}  {list_display[27]} \n
+			> {list_display[28]}  {list_display[29]}  {list_display[30]}  {list_display[31]}  {list_display[32]}  {list_display[33]}  {list_display[34]} \n
+			> {list_display[35]}  {list_display[36]}  {list_display[37]}  {list_display[38]}  {list_display[39]}  {list_display[40]}  {list_display[41]} ")
+main
+	month = mont()
+	year = year()
+	days = days_of_the_month(is_leap_year(year), month)
+	display(start_of_the_month(year, is_leap_year(year), days)
