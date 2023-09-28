@@ -5,9 +5,11 @@
 # 3. Assignment Description:
 #      It caculates what the month looks like for a sertain year
 # 4. What was the hardest part? Be as specific as possible.
-#      -a paragraph or two about how the assignment went for you-
+#      The hardest part was get the Week start function because we couldent use sertain items that would have made it easier to do it
+#      so I spent roughly 4 hours on it last week to get it out of the way.
 # 5. How long did it take for you to complete the assignment?
-#      -total time in hours including reading the assignment and submitting the program-
+#      it took me 7 hours to code this assignment
+#  video link https://www.youtube.com/watch?v=NBqfH_xvlHU
 
 
 
