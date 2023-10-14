@@ -10,7 +10,7 @@
 # 5. How long did it take for you to complete the assignment?
 #      It took me about 10 hours where most of it was spent debugging, it took about 2 hours to convert most of the 
 #       code from psedocode to python and the rest trying to figgure out the data passing.
-#   youtube link: 
+#   youtube link: https://www.youtube.com/watch?v=Afh6yi7_mlU
 
 import Handle
 import Game
