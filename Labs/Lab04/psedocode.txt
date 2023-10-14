@@ -40,10 +40,10 @@ Function re_convert(column):
         Return 'H'
     Else if column == 8:
         Return 'I'
-    
+
 Function check_row(board, row, num):
     For each column in board:
-        If board[row - 1][column] == num:
+        If board[row][column] == num:
             Return False
     Return True
 
@@ -54,8 +54,8 @@ Function check_column(board, column, num):
     Return True
 
 Function check_square(board, row, column, num):
-    square_row = row // 3 * 3
-    square_col = column // 3 * 3
+    square_row = (row // 3) * 3
+    square_col = (column // 3) * 3
 
     For i from square_row to square_row + 2:
         For j from square_col to square_col + 2:
@@ -66,26 +66,95 @@ Function check_square(board, row, column, num):
 Function check_location1(board, row, column_a):
     row -= 1
     column = convert(column_a)
-    If !(row < 0 OR row >= 9 OR column < 0 OR column > 8):
-        Print "ERROR: Square {column_a}{row} is invalid"
-    Return False
+    If row < 0 OR row > 8 OR column < 0 OR column > 8:
+        Print "ERROR: Square {column_a}{row + 1} is invalid"
+        Return False
+    Else:
+        Return True
 
 Function check_location2(board, row, column):
-    If board[row - 1][column] != ' ':
-        Print "ERROR: Square {re_convert(column)}{row} is filled"
-    Return False
+    If board[row][column] != ' ':
+        Print f"ERROR: Square {re_convert(column)}{row + 1} is filled"
+        Return False
+    Else:
+        Return True
 
 Function valid_input(num):
-    If num is not in ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'S']:
-        Print "ERROR: The value {num} is invalid"
-    Return False
+    If num not in ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'S']:
+        Print f"ERROR: The value {num} is invalid"
+        Return False
+    Else:
+        Return True
 
 Function helper(board, row, column):
     valid_numbers = []
 
-    If check_location1(board, row, column):
+    If check_location2(board, row, column):
         For num from '1' to '9':
             If check_row(board, row, num) AND check_column(board, column, num) AND check_square(board, row, column, num):
                 valid_numbers.append(num)
 
-    print valid_numbers
+    Print valid_numbers
+
+Function display_board(board):
+    Print("   A B C D E F G H I")
+    For row from 0 to 8:
+        If row % 3 == 0:
+            Print("   -----+-----+-----")
+
+        Print(row + 1, end=' ')
+        For col from 0 to 8:
+            If col % 3 == 0:
+                Print("|", end='')
+            Else:
+                Print(" ", end='')
+
+            cell = board[row][col]
+            If cell == ' ':
+                Print(" ", end='')
+            Else:
+                Print(cell, end='')
+
+        Print("|")
+
+    Print("   -----+-----+-----")
+
+Function place_on_board():
+    loc = get_location()
+    num = get_num(loc)
+    
+    If check_row(board, loc[0], num) and check_column(board, loc[1], num) and check_square(board, loc[0], loc[1], num):
+        board[loc[0]][loc[1]] = num
+
+Function get_location():
+    Good_loc = False
+    While Not Good_loc:
+        location = input("> ")
+        If location == "Q":
+            quit_game()
+            Good_loc = True
+        column = convert(location[0])
+        row = int(location[1]) - 1
+
+        If check_location1(board, row, location[0]) AND check_location2(board, row, column):
+            Good_loc = True
+            Return [row, column]
+    
+Function get_num(location):
+    loc = re_convert(location[1]) + (location[0] + 1)
+    While True:
+        num = input(f"What is the value at '{loc}': ")
+        If valid_input(num):
+            If num == "S":
+                helper(location[0], location[1])
+            Else:
+                Return int(num)
+
+Function main():
+    Global filename = get_filename()
+    Global board = load_file(filename)
+    Global game = True
+    
+    While game:
+        display_board(board)
+        place_on_board()

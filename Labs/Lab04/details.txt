@@ -1,38 +1,40 @@
 list of function in a program to play soduko
 > file handling
-    > load_file
-        / loads the file that was given
-    > save_file
-        / saves to the file that was given using the load_file
-    > quit
+    > load_file (minor) X
+        / loads the file that was given 
+    > save_file (minor) X
+        / saves to the file that was given 
+    > quit (minor) X
         / asks user if they wish to save and quit 
 > the board
-    > display_board
-        / displays board saved in the file given using load_file
-    > place_on_board
-        / uses get_location and get_num and check functions* to place number on board
+    > display_board (major) X
+        / displays board 
+    > place_on_board (major) 
+        / uses get_location and get_num and check functions to place number on board
 > user input
-    > get_filename
+    > get_filename (minor) X
         / gets file name from user
-    > get_location
-        / gets cordnets for the board
-    > convert
-        / converts input to useable varables
-    > get_num
-        / gets number to be placed in cordnets from the get_location
+    > get_location (minor) 
+        / gets cordnets for the board and checks
+    > convert (minor) X
+        / converts input to useable varables 
+    > re_convert (minor) X
+        / converts number to alp for location
+    > get_num (minor) 
+        / gets number to be placed in cordnets from the get_location and checks
 > rules
-    > check_row
+    > check_row (minor) X
         / checks input number with the numbers in that row
-    > check_colum
+    > check_colum (minor) X
         / checks input number with the numbers in that colum
-    > check_square
+    > check_square (minor) X 
         / checks input number with the numbers in that 3x3 square 
-    > check_location1
+    > check_location1 (minor) X
         / checks valid cordnet location on board or Q 
-    > check_location2
+    > check_location2 (minor) X
         / checks for empty space at cordnet location
-    > valid_input
+    > valid_input (minor) X
         / checks that input number is 1-9 or S
 > other
-    > helper
+    > helper (major)
         / displays possible valid input numbers at a given location

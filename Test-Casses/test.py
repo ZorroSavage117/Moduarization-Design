@@ -1,24 +1,38 @@
-def start_of_the_week(year, month):
-    # Adjust month and year for January and February
-    if month in (1, 2):
-        month += 12
-        year -= 1
-    
-    # Calculate the day of the week using Zeller's Congruence
-    k = 1  # Day of the month is always 1
-    m = month
-    D = year % 100
-    C = year // 100
-    
-    f = k + ((13 * (m + 1)) // 5) + D + (D // 4) + (C // 4) - 2 * C
-    
-    # Adjust the result to represent Sunday as 0
-    day_of_week = (f % 7 - 1) % 7
-    
-    return day_of_week
+def display_board(board):
+    print("   A B C D E F G H I")
+    for row in range(9):
+        if row % 3 == 0:
+            print("   -----+-----+-----")
+
+        print(row + 1, end=' ')  # Print row number
+        for col in range(9):
+            if col % 3 == 0:
+                print("|", end='')  # Adjusted spacing for vertical separator within 3x3 subgrid
+            else:
+                print(" ", end='')  # Adjusted spacing for cell content
+
+            cell = board[row][col]
+            if cell == ' ':
+                print(" ", end='')  # Adjusted spacing for empty cell
+            else:
+                print(cell, end='')  # Adjusted spacing for the cell value
+
+        print("|")  # Print vertical separator at the end of the row
+
+    print("   -----+-----+-----")
 
 # Example usage:
-year = 2023
-month = 1
-result = start_of_the_week(year, month)
-print(f"The 1st day of {month}/{year} is a Sunday (0-based index): {result}")
+# Replace this with your actual Sudoku board
+sample_board = [
+    ['7', '2', '3', ' ', ' ', ' ', '1', '5', '9'],
+    ['6', ' ', ' ', '3', ' ', '2', ' ', ' ', '8'],
+    ['8', ' ', ' ', '1', ' ', ' ', ' ', ' ', '2'],
+    [' ', ' ', '7', '6', '5', '4', ' ', '2', ' '],
+    [' ', ' ', '4', '2', ' ', '7', '3', ' ', ' '],
+    [' ', ' ', '5', '9', '3', '1', ' ', '4', ' '],
+    ['5', ' ', ' ', '7', ' ', ' ', ' ', ' ', '3'],
+    ['4', ' ', ' ', '1', ' ', '3', ' ', ' ', '6'],
+    ['9', '3', '2', ' ', ' ', ' ', '7', '1', '4']
+]
+
+display_board(sample_board)
