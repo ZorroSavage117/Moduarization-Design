@@ -1,0 +1,23 @@
+Test Name                           | Test Type | Input | Output      
+Invalid Input 1                     | R, B      | Q10   | Not a valid location try again
+Invalid Input 2                     | R, B      | q10   | Not a valid location try again
+Invalid Input 3                     | R, B      | 10j   | Not a valid location try again
+Invalid Input 4                     | R, B      | d20   | Not a valid location try again
+Reversed Coordinates                | R         | 5E    | Ask for a number
+Lowercase Coordinates               | R, B      | d1    | Ask for a number
+Reversed & Lowercase Coordinates    | R, B      | 1e    | Ask for a number
+Square Already Filled               | R, B      | A1    | Square already filled try again
+Invaled Number 1                    | R, B      | d     | Not a valid number try again
+Invaled Number 2                    | R, B      | 0     | Not a valid number try again
+Invaled Number 3                    | R, B      | 11    | Not a valid number try again
+Invalid Number 4                    | R, B      | -5    | Not a valid number try again
+Unique Row                          | R, B      | 7     | Already exists in row try again
+Unique Column                       | R, B      | 6     | Already exists in column try again
+Unique Inside Square                | R, B      | 5     | Already exists in square try again
+Show Possible Values 1              | R         | s     | 8 
+Show Possible Values 2              | R         | s     | 4, 8
+
+Guide:
+    R > Requirement
+    E > Error case 
+    B > Boundary case 
