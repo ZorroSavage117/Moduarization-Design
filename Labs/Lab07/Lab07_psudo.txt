@@ -1,0 +1,42 @@
+Function SubListSort(list):
+    Initialize source and destination arrays of the same size as the input list
+    Initialize variables: index, iSource1, iSource2, iDest, passNum
+    Set passNum to 1
+    
+    While passNum is less than or equal to 2:
+        index = 0
+        iDest = 0
+        
+        While index < length of list:
+            # Identify Runs
+            Find the first sorted sub-array and store it in source1
+            Find the next sorted sub-array and store it in source2
+            
+            # Merge Runs
+            While source1 and source2 are not empty:
+                If source1[0] <= source2[0]:
+                    destination[iDest] = source1[0]
+                    Remove the first element from source1
+                Else:
+                    destination[iDest] = source2[0]
+                    Remove the first element from source2
+                Increment iDest
+                
+            # Copy any remaining elements from source1 or source2 to destination
+            If source1 is not empty:
+                Copy remaining elements from source1 to destination
+            If source2 is not empty:
+                Copy remaining elements from source2 to destination
+                
+            Increment index by the size of merged sub-arrays
+        
+        # Swap source and destination arrays for the next pass
+        Swap source and destination arrays
+        Increment passNum
+
+Function Main():
+    Input: Prompt user for a list of names or numbers
+    Call SubListSort function with the input list
+    Display the sorted list on the screen
+
+Main()  # Start the program
