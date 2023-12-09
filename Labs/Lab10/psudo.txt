@@ -1,0 +1,23 @@
+function segregation_sort(array, i_start, i_end)
+    if i_start < i_end
+        i_pivot = choose_pivot_index(array, i_start, i_end)
+        i_up = i_start
+        i_down = i_end
+
+        while i_up < i_down
+            while array[i_up] < array[i_pivot] and i_up < i_end
+                i_up = i_up + 1
+
+            while array[i_down] >= array[i_pivot] and i_down > i_start
+                i_down = i_down - 1
+
+            if i_up < i_down
+                swap(array[i_up], array[i_down])
+
+        swap(array[i_pivot], array[i_down])
+
+        segregation_sort(array, i_start, i_down - 1)
+        segregation_sort(array, i_down + 1, i_end)
+
+function choose_pivot_index(array, i_start, i_end)
+    return (i_start + i_end) / 2
