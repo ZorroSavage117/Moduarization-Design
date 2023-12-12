@@ -1,0 +1,98 @@
+structure chart
+    main
+        >input and output calls
+    encript (int key, string note)
+        >canges the leter by the input amount to encript
+    decript (int amount, string note)
+        >changes the leter by the input amount to decript
+
+data flow
+    gets note from user in main > string note_in > encript or decript > string cyper_note > displayed in main
+    gets key from user in main > int key > encript or decript
+
+psedocode for most important function
+
+def encrypt(int key, string note)
+    encrypted = ""
+    for character in note
+        if character is " " # if the character is a space it adds it to the encripted string
+            encrypted += character
+        else if character is upper # if it is upper case it uses the uppper case leters in the uni code
+            encrypted += chr((ord(character) - ord('A') + key) % 26 + ord('A'))
+        else if character is lowwer # if it is a lowwer case letter
+            encrypted += chr((ord(character) - ord('a') + key) % 26 + ord('a'))
+        else 
+            encripted += character
+    return encripted
+
+def decrypt(key, note):
+    decrypted = ""
+    for character in note:
+        if character == " ":  # If the character is a space, add it to the decrypted string
+            decrypted += character
+        elif character.isupper():  # If it is an uppercase letter
+            decrypted += chr((ord(character) - ord('A') - key) % 26 + ord('A'))
+        elif character.islower():  # If it is a lowercase letter
+            decrypted += chr((ord(character) - ord('a') - key) % 26 + ord('a'))
+        else:
+            decrypted += character
+    return decrypted
+
+def main
+    sting note = input("note for encript or decript: ")
+    int key = int(input("key to use: "))
+    string de_or_en = input("encript or decript:" )
+    if de_or_en is "encript"
+        print(encript(key, note))
+    else if de_or_en is "decript"
+        print(decript(key, note))
+
+algorithmic efficiency 
+    main is O(1) because it doesn't loop
+    both encript and decript is O(n) because it loops through each string 
+        character and does its thing so longer the string the longer it 
+        takes.
+
+maintainability determination
+    for the simplicity of this program this is really maintainable but if
+    it were to get more complex it would require a lot more work to meet 
+    the new complex encripting method
+
+cohesion and coupling
+    main is low cohesion and reasonably coupled
+    both encript and decript have high cohesion because they focus on a 
+        specific cription task. and they are loosely coupled
+
+program trace
+    inputs are note = "Hello world 10?" ; key = 5 ; encript 
+    | iteration | character | is " " | is upper | is lowwer | new character |
+    |     1     | "H"       | false  | false    | true      | "M"           |
+    |     2     | "e"       | false  | false    | true      | "j"           |
+    |     3     | "l"       | false  | false    | true      | "q"           |
+    |     4     | "l"       | false  | false    | true      | "q"           |
+    |     5     | "o"       | false  | false    | true      | "t"           |
+    |     6     | " "       | true   | false    | false     | " "           |
+    |     7     | "w"       | false  | false    | true      | "b"           |
+    |     8     | "o"       | false  | false    | true      | "t"           |
+    |     9     | "r"       | false  | false    | true      | "w"           |
+    |    10     | "l"       | false  | false    | true      | "q"           |
+    |    11     | "d"       | false  | false    | true      | "i"           |
+    |    12     | " "       | true   | false    | false     | " "           |
+    |    13     | "1"       | false  | false    | false     | "1"           |
+    |    14     | "0"       | false  | false    | false     | "0"           |
+    |    15     | "?"       | false  | false    | false     | "?"           |
+    output is "Mjqqt btwqi 10?"
+
+test cases
+    case # | name | inputs | output
+    1 | basic upper case encript | "HELLO" ; 3 ; encript | "KHOOR"
+    2 | basic lower case encript | "hello" ; 3 ; encript | "khoor"
+    3 | basic mixed case encript | "Hello World ; 5 ; encript | "Mjqqt Btwqi"
+    4 | numbers and puncuwation | "123!@#" ; 5 ; encript | "123!@#"
+    5 | basic upper case decript | "KHOOR" ; 3 ; decript | "HELLO"
+    6 | basic lower case decript | "khoor" ; 3 ; decript | "hello"
+    7 | basic mixed case decript | "Mjqqt Btwqi" ; 5 ; decript | "Hello World"
+    8 | negative key encript | "Hello worlD 2024" ; -9 ; encript | "Yvccf nficW 2024"
+    9 | negative key decript | "Yvccf nficW 2024" ; -9 ; decript | "Hello worlD 2024"
+
+    ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ
